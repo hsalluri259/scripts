@@ -9,9 +9,11 @@ args = parser.parse_args()
 snippet = args.snippet.lower()
 
 words = open('/usr/share/dict/words').readlines()
-matches = []
+##replacing all lines with a single statement
+print([word for word in words if snippet in word.lower()])
+#matches = []
 
-for word in words:
-    if snippet in word.lower():
-        matches.append(word)
-print(matches)
+#for word in words:
+  #  if snippet in word.lower():
+   #     matches.append(word)
+#print(matches)
