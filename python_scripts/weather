@@ -1,0 +1,24 @@
+#!/usr/bin/env python
+##Run the program with OWM_API_KEY=provide_key python weather zip_code
+import sys
+import os
+import requests
+from argparse import ArgumentParser
+
+parser = ArgumentParser(description='Get the current weather information')
+parser.add_argument('zip', help='Zip/postal to get the weather information')
+parser.add_argument('--country', default='us', help='zip/postal belongs to, default is "us"')
+
+args = parser.parse_args()
+
+url = "http://api.openweathermap.org/data/2.5/weather?zip=%s,%s&APPID=%s" % (
+       args.zip,
+       args.country,
+       os.getenv("OWM_API_KEY"))
+##To get API KEY, goto https://home.openweathermap.org/api_keys, and copy API KEY
+res = requests.get(url)
+
+if res.status_code != 200:
+    print("Error talking to weather provider: %s" % res.status_code)
+    sys.exit(1)
+print(res.json())
