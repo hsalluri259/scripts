@@ -1,5 +1,5 @@
 import xml.etree.ElementTree as etree
-maxdepth = -1
+maxdepth = 0
 def depth(elem, level):
     global maxdepth
     # your code goes here
